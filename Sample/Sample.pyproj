@@ -5,7 +5,7 @@
     <ProjectGuid>3aa0eee2-67d1-4323-868c-895be1ba8756</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Python读写文件.py</StartupFile>
+    <StartupFile>test_survey.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HelloWorld.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="language_survey.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test_survey.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Python读写文件.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
