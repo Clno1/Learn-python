@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Alien_invasion.py" />
+    <Compile Include="bullet.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="game_function.py">
       <SubType>Code</SubType>
     </Compile>
