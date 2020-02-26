@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="alien.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Alien_invasion.py" />
     <Compile Include="bullet.py">
       <SubType>Code</SubType>
