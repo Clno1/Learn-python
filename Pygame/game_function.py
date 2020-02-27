@@ -1,5 +1,6 @@
 
 import sys
+from time import sleep
 import pygame
 from bullet import Bullet
 from alien import Alien
@@ -51,12 +52,18 @@ def update_screen(ai_setting,screen,ship,aliens,bullets):
     pygame.display.flip()
 
 #更新子弹
-def update_bullets(bullets):
+def update_bullets(ai_settings,screen,ship,aliens,bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom<=0:
             bullets.remove(bullet)
     #print(len(bullets))
+    #内置函数：一行就双重遍历子弹和敌人，矩形重叠就消失
+    collisions=pygame.sprite.groupcollide(bullets,aliens,True,True)
+    #检测现有敌人是否为0了
+    if len(aliens)==0:
+        bullets.empty()
+        creat_fleet(ai_settings,screen,ship,aliens)
 
 #创建外星人舰队：
 def creat_fleet(ai_settings,screen,ship,aliens):
@@ -66,7 +73,7 @@ def creat_fleet(ai_settings,screen,ship,aliens):
     row_numbers=calc_row_number(ai_settings, ship.rect.height, alien.rect.height)
 
     for row_number in range(row_numbers):
-        for alien_number in range(number_aliens_x):
+        for alien_number in range(number_aliens_x-1):
             creat_an_alien(ai_settings,screen,aliens,alien_number,row_number)
         
 
@@ -92,9 +99,13 @@ def calc_row_number(ai_settings, ship_height, alien_height):
     return number_rows
 
 #更新外星人
-def update_aliens(ai_settings,aliens):
+def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
     check_fleet_edges(ai_settings,aliens)
     aliens.update()
+    #
+    if pygame.sprite.spritecollideany(ship,aliens):
+        ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
+        print("Xiba!!!")
 
 def check_fleet_edges(ai_settings,aliens):
     for alien in aliens.sprites():
@@ -107,3 +118,17 @@ def change_direction(ai_settings,aliens):
         alien.y+=ai_settings.fleet_drop_speed
         alien.rect.y=int(alien.y)
     ai_settings.fleet_direction*=-1
+
+def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
+    if stats.ship_lives>0:
+        stats.ship_lives-=1
+
+        aliens.empty()
+        bullets.empty()
+
+        creat_fleet(ai_settings,screen,ship,aliens)
+        ship.center_ship()
+
+        sleep(1)
+    else:
+        stats.game_active=False

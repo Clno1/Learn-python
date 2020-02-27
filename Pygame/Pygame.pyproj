@@ -31,6 +31,9 @@
     <Compile Include="game_function.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="game_stats.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="settings.py">
       <SubType>Code</SubType>
     </Compile>
