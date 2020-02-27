@@ -7,10 +7,10 @@ class Settings():
         self.screen_width=900
         self.screen_height=600
         self.bg_color=(230,230,230)
-        self.ship_speed=0.5
+        self.ship_speed=2
         self.ship_lives=3
         #子弹
-        self.bullet_width=500
+        self.bullet_width=5
         self.bullet_height=10
         self.bullet_speed=2
         self.bullet_color=60,60,60
@@ -19,3 +19,4 @@ class Settings():
         self.alien_speed=0.5
         self.fleet_drop_speed=50    #敌人撞壁之后向下移动速度
         self.fleet_direction=1      #取1/-1为向右/向左
+        self.alien_points=10

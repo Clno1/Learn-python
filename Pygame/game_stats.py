@@ -9,3 +9,4 @@ class GameStats():
 
     def reset_stats(self):
         self.ship_lives=self.ai_settings.ship_lives
+        self.score=0

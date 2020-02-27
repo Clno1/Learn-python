@@ -71,7 +71,7 @@ def update_screen(ai_settings, screen,stats,ship,aliens, bullets,play_button):
     pygame.display.flip()
 
 #更新子弹
-def update_bullets(ai_settings,screen,ship,aliens,bullets):
+def update_bullets(ai_settings,stats,sb,screen,ship,aliens,bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom<=0:
@@ -79,6 +79,11 @@ def update_bullets(ai_settings,screen,ship,aliens,bullets):
     #print(len(bullets))
     #内置函数：一行就双重遍历子弹和敌人，矩形重叠就消失
     collisions=pygame.sprite.groupcollide(bullets,aliens,True,True)
+    #更新分数
+    if collisions:
+        for aliens in collisions.values():
+            stats.score+=ai_settings.alien_points*len(aliens)
+            sb.prep_score()
     #检测现有敌人是否为0了
     if len(aliens)==0:
         bullets.empty()
@@ -154,7 +159,7 @@ def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
         pygame.mouse.set_visible(True)
 
 """ 更新屏幕上的图像，并切换到新屏幕 """
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets,play_button):
+def update_screen(ai_settings, screen, sb,stats, ship, aliens, bullets,play_button):
     #每次循环都重绘屏幕
     screen.fill(ai_settings.bg_color)
     #更新子弹group内子弹位置
@@ -162,6 +167,7 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets,play_button)
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    sb.show_score()
 
     # 如果游戏处于非活动状态，就绘制 Play 按钮
     if not stats.game_active:
