@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>22e5d440-5ece-47b0-ba7a-482512bdacc8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>scatter_squares.py</StartupFile>
+    <StartupFile>different_dice.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="die.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="die_visual.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="different_dice.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="mpl_squares.py" />
+    <Compile Include="RandomWalk.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rw_visual.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scatter_squares.py">
       <SubType>Code</SubType>
     </Compile>
